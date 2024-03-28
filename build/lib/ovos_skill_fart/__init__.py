@@ -20,17 +20,13 @@ import random
 import time
 from datetime import datetime, timedelta
 from os import listdir, path
-from os.path import abspath, dirname, isfile, join, splitext
-#from tinytag import TinyTag
+from os.path import dirname, isdir, join
 
 
 from ovos_bus_client.message import Message
 from ovos_workshop.decorators import intent_handler
 from ovos_workshop.intents import IntentBuilder
 from ovos_workshop.skills import OVOSSkill
-
-#from mycroft import MycroftSkill, intent_file_handler
-#from mycroft.skills.audioservice import AudioService
 
 
 class Farting(OVOSSkill):
@@ -90,7 +86,7 @@ class Farting(OVOSSkill):
         #self.gui.clear()
         #pic = random.randint(0, 3)
         #self.gui.show_image(join(dirname(__file__), "ui", "images", str(pic) + ".jpg"))
-        #self.play_audio(sound)
+        self.play_audio(sound)
         #self.gui.clear()
 
 #    def handle_fart_event(self, message):
@@ -105,7 +101,11 @@ class Farting(OVOSSkill):
 #                            name='random_fart'+str(self.counter))
 #        self.fart_and_comment()
 
-
+    @intent_handler("Laugh.intent")
+    def handle_laugh_intent(self, message: Message) -> None:  # noqa
+        """Handle the laugh intent."""
+        self.fart()
+        
     @intent_file_handler('accuse.intent')
     def handle_accuse_intent(self, message):
         # make a comment when accused of farting
@@ -128,7 +128,7 @@ class Farting(OVOSSkill):
 #                            + timedelta(seconds=random.randrange(30, 60)),
 #                            name='random_fart'+str(self.counter))
     @intent_handler(IntentBuilder("StopFarting").require("Stop").require("Fart"))
-    def halt_laughing(self, message: Message) -> None:
+    def halt_farting(self, message: Message) -> None:
         """Stop the random farting."""
         self.log.info("Farting skill: Stopping")
         # if in random fart mode, cancel the scheduled event
@@ -140,12 +140,12 @@ class Farting(OVOSSkill):
         else:
             self.speak_dialog("cancel_fail")
 
-    def handle_laugh_event(self, message: Optional[Message]) -> None:
+    def handle_fart_event(self, message: Optional[Message]) -> None:
         """Create a scheduled event for random farting."""
         if not self.random_fart:
             return
         self.log.info("Farting skill: Handling fart event")
-        self.laugh()
+        self.fart()
         self.cancel_scheduled_event("random_fart")
         self.schedule_event(
             self.handle_fart_event,

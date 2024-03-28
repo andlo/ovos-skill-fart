@@ -2,6 +2,7 @@ LICENSE.md
 README.md
 setup.py
 ./__init__.py
+./skill.json
 ./version.py
 ./locale/en-us/dialog/cancel.dialog
 ./locale/en-us/dialog/cancel_fail.dialog
