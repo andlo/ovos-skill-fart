@@ -1,0 +1,2 @@
+[ovos.plugin.skill]
+ovos-skill-fart.andlo = ovos_skill_fart:Farting

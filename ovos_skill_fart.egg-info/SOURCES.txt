@@ -1,0 +1,36 @@
+LICENSE.md
+README.md
+setup.py
+./__init__.py
+./version.py
+./locale/en-us/dialog/cancel.dialog
+./locale/en-us/dialog/cancel_fail.dialog
+./locale/en-us/dialog/maybe.dialog
+./locale/en-us/dialog/yes.dialog
+./locale/en-us/vocab/accuse.intent
+./locale/en-us/vocab/apologise.dialog
+./locale/en-us/vocab/cancel.dialog
+./locale/en-us/vocab/farting.intent
+./locale/en-us/vocab/halt_farting.intent
+./locale/en-us/vocab/noise.dialog
+./locale/en-us/vocab/random.intent
+./locale/en-us/vocab/random_farting.dialog
+./sounds/Another Fart-SoundBible.com-322027286.mp3
+./sounds/Attribution.txt
+./sounds/Fart Reverberating Bathroom-SoundBible.com-2032114496.mp3
+./sounds/Fart Strain-SoundBible.com-935811180.mp3
+./sounds/Fart-Common-Everyday-Fart_Mike-Koenig.mp3
+./sounds/Girl Fart-SoundBible.com-669012925.mp3
+./sounds/Person Farting-SoundBible.com-1490324066.mp3
+./sounds/Quick An Small Fart-SoundBible.com-958779407.mp3
+./sounds/Quick Fart-SoundBible.com-655578646.mp3
+./sounds/Rigid Fart-SoundBible.com-1121832279.mp3
+./sounds/Sharp Fart-SoundBible.com-359497364.mp3
+./sounds/Trumpet Fart-SoundBible.com-2075756858.mp3
+./sounds/Wet Fart Squish-SoundBible.com-332766022.mp3
+ovos_skill_fart.egg-info/PKG-INFO
+ovos_skill_fart.egg-info/SOURCES.txt
+ovos_skill_fart.egg-info/dependency_links.txt
+ovos_skill_fart.egg-info/entry_points.txt
+ovos_skill_fart.egg-info/requires.txt
+ovos_skill_fart.egg-info/top_level.txt
