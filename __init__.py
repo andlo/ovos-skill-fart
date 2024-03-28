@@ -52,15 +52,15 @@ class Farting(OVOSSkill):
 #        self.sound_files = [f for f in listdir(self.path_to_sound_files) if splitext(f)[1] in valid_codecs]
 #        self.audio_service = AudioService(self.bus)
 #        self.random_farting = False  # flag to indicate whether random farting mode is active
-        self.counter = 0  # variable to increment to make the scheduled event unique
+#        self.counter = 0  # variable to increment to make the scheduled event unique
 
     def initialize(self) -> None:
         """Initialize the skill."""
         self.random_fart = False
-        self.sounds = {"male": [], "female": [], "robot": []}
+        self.sounds = []
 
         # Example adjustment: Verifying sound directories exist before populating `sounds`
-        sounds_dir =self.sounds_dir
+        sounds_dir = self.sounds_dir
         if isdir(sounds_dir):  # Ensure the directory exists
             self.sounds = [
                 join(sounds_dir, sound)
@@ -101,12 +101,12 @@ class Farting(OVOSSkill):
 #                            name='random_fart'+str(self.counter))
 #        self.fart_and_comment()
 
-    @intent_handler("Laugh.intent")
-    def handle_laugh_intent(self, message: Message) -> None:  # noqa
-        """Handle the laugh intent."""
+    @intent_handler("Fart.intent")
+    def handle_fart_intent(self, message: Message) -> None:  # noqa
+        """Handle the fart intent."""
         self.fart()
-        
-    @intent_file_handler('accuse.intent')
+
+    @intent_handler('accuse.intent')
     def handle_accuse_intent(self, message):
         # make a comment when accused of farting
         self.speak_dialog('apologise')
