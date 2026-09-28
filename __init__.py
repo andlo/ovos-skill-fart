@@ -21,6 +21,7 @@ import time
 from datetime import datetime, timedelta
 from os import listdir, path
 from os.path import dirname, isdir, join
+from typing import Optional
 
 
 from ovos_bus_client.message import Message
