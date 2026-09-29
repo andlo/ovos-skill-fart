@@ -1,4 +1,6 @@
 __pycache__/
-*.qmlc
-settings.json
-
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/

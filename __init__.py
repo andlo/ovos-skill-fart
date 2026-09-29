@@ -1,6 +1,6 @@
 """
-skill farting-skill
-Copyright (C) 2020  Andreas Lorensen
+ovos-skill-fart - make your voice assistant a little less well-mannered.
+Copyright (C) 2020-2026  Andreas Lorensen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,170 +13,174 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+Features
+--------
+* "fart"                -> plays a random fart, sometimes followed by a comment
+* "did you fart?"       -> confesses if it farted recently, otherwise blames
+                           someone else
+* "fart randomly"       -> keeps farting at random intervals until told to stop
+* "stop farting"/"stop" -> ends random mode
+
+Settings (settings.json)
+------------------------
+* comment_chance      float 0..1, chance of a comment after a fart (default 0.5)
+* random_min_minutes  shortest pause in random mode (default 5)
+* random_max_minutes  longest pause in random mode (default 60)
+* confess_window_sec  how long after a fart it will own up to it (default 120)
+* sounds_dir          optional folder with your own .mp3/.wav/.ogg files
 """
 
 import random
 import time
-from datetime import datetime, timedelta
-from os import listdir, path
+from os import listdir
 from os.path import dirname, isdir, join
-from typing import Optional
-
+from typing import List, Optional
 
 from ovos_bus_client.message import Message
 from ovos_workshop.decorators import intent_handler
-from ovos_workshop.intents import IntentBuilder
 from ovos_workshop.skills import OVOSSkill
 
+SOUND_EXTENSIONS = (".mp3", ".wav", ".ogg", ".flac")
+RANDOM_EVENT_NAME = "random_fart"
 
-class Farting(OVOSSkill):
-    """Make your voice assistant sound smelly. Beware...you might laught"""
+DEFAULT_COMMENT_CHANCE = 0.5
+DEFAULT_RANDOM_MIN_MINUTES = 5
+DEFAULT_RANDOM_MAX_MINUTES = 60
+DEFAULT_CONFESS_WINDOW_SEC = 120
+
+
+def find_sounds(folder: str) -> List[str]:
+    """Return all playable sound files in ``folder`` (sorted, full paths)."""
+    if not folder or not isdir(folder):
+        return []
+    return sorted(
+        join(folder, f) for f in listdir(folder)
+        if f.lower().endswith(SOUND_EXTENSIONS)
+    )
+
+
+class FartSkill(OVOSSkill):
+    """Fart on request, at random, and deny everything."""
+
+    def initialize(self):
+        self.random_mode = False
+        self.last_fart_ts: Optional[float] = None
+        self.sounds = self._load_sounds()
+        if not self.sounds:
+            self.log.error("No fart sounds found - the skill will stay silent")
+
+    # ------------------------------------------------------------------
+    # settings helpers
+    def _setting_float(self, key: str, default: float) -> float:
+        try:
+            return float(self.settings.get(key, default))
+        except (TypeError, ValueError):
+            return default
 
     @property
-    def sounds_dir(self) -> str:
-        """Path to the sounds directory."""
-        default = join(dirname(__file__), "sounds")
-        if not self.settings.get("sounds_dir"):
-            self.sounds_dir = default
-        return self.settings.get("sounds_dir", default)
+    def comment_chance(self) -> float:
+        return min(1.0, max(0.0, self._setting_float("comment_chance", DEFAULT_COMMENT_CHANCE)))
 
-    @sounds_dir.setter
-    def sounds_dir(self, value) -> None:
-        """Setter for sounds_dir property."""
-        self.settings["sounds_dir"] = value
+    @property
+    def random_interval_seconds(self) -> tuple:
+        lo = max(1.0, self._setting_float("random_min_minutes", DEFAULT_RANDOM_MIN_MINUTES))
+        hi = max(lo, self._setting_float("random_max_minutes", DEFAULT_RANDOM_MAX_MINUTES))
+        return lo * 60, hi * 60
 
-#    def initialize(self):
-#        # Search the sounds directory for sound files and load into a list.
-#        valid_codecs = ['.mp3']
-#        self.path_to_sound_files = path.join(abspath(dirname(__file__)), 'sounds')
-#        self.sound_files = [f for f in listdir(self.path_to_sound_files) if splitext(f)[1] in valid_codecs]
-#        self.audio_service = AudioService(self.bus)
-#        self.random_farting = False  # flag to indicate whether random farting mode is active
-#        self.counter = 0  # variable to increment to make the scheduled event unique
+    @property
+    def confess_window(self) -> float:
+        return self._setting_float("confess_window_sec", DEFAULT_CONFESS_WINDOW_SEC)
 
-    def initialize(self) -> None:
-        """Initialize the skill."""
-        self.random_fart = False
-        self.sounds = []
+    def _load_sounds(self) -> List[str]:
+        custom = self.settings.get("sounds_dir")
+        if custom:
+            sounds = find_sounds(custom)
+            if sounds:
+                return sounds
+            self.log.warning(f"sounds_dir '{custom}' has no sound files - using the built-in ones")
+        return find_sounds(join(dirname(__file__), "sounds"))
 
-        # Example adjustment: Verifying sound directories exist before populating `sounds`
-        sounds_dir = self.sounds_dir
-        if isdir(sounds_dir):  # Ensure the directory exists
-            self.sounds = [
-                join(sounds_dir, sound)
-                for sound in listdir(sounds_dir)
-                if sound.endswith((".wav", ".mp3"))
-            ]
-        else:
-            self.log.warning("Sounds directory does not exist: %s", sounds_dir)
+    # ------------------------------------------------------------------
+    # core behaviour
+    def fart(self, comment: Optional[bool] = None) -> bool:
+        """Play a random fart. Optionally follow it with a remark.
 
-        # stop farts for speech execution
-        self.add_event("speak", self.stop)
+        Audio is queued with TTS, so the comment is spoken after the sound.
+        Returns False if there is nothing to play.
+        """
+        if not self.sounds:
+            return False
+        self.play_audio(random.choice(self.sounds))
+        self.last_fart_ts = time.time()
+        if comment is None:
+            comment = random.random() < self.comment_chance
+        if comment:
+            self.speak_dialog("fart_comment")
+        return True
 
-        self.add_event("skill-fart.openvoiceos.home", self.handle_homescreen)
+    def recently_farted(self) -> bool:
+        return (self.last_fart_ts is not None
+                and time.time() - self.last_fart_ts <= self.confess_window)
 
-    def handle_homescreen(self, message: Message) -> None:  # noqa
-        """Handle the homescreen event."""
-        self.fart()
+    def _schedule_next_random_fart(self):
+        lo, hi = self.random_interval_seconds
+        self.cancel_scheduled_event(RANDOM_EVENT_NAME)
+        self.schedule_event(self._handle_random_fart,
+                            time.time() + random.uniform(lo, hi),
+                            name=RANDOM_EVENT_NAME)
 
-    def fart(self):
-        """Make the voice assistant fart."""
-        sound = random.choice(self.sounds)
-
-        #self.gui.clear()
-        #pic = random.randint(0, 3)
-        #self.gui.show_image(join(dirname(__file__), "ui", "images", str(pic) + ".jpg"))
-        self.play_audio(sound)
-        #self.gui.clear()
-
-#    def handle_fart_event(self, message):
-#        # create a scheduled event to fart at a random interval between 1 minute and half an hour
-#        self.log.info("Handling fart event")
-#        if not self.random_farting:
-#            return
-#        self.cancel_scheduled_event('randon_fart'+str(self.counter))
-#        self.counter += 1
-#        self.schedule_event(self.handle_fart_event, datetime.now() 
-#                            + timedelta(seconds=random.randrange(60, 1800)),
-#                            name='random_fart'+str(self.counter))
-#        self.fart_and_comment()
-
-    @intent_handler("Fart.intent")
-    def handle_fart_intent(self, message: Message) -> None:  # noqa
-        """Handle the fart intent."""
-        self.fart()
-
-    @intent_handler('accuse.intent')
-    def handle_accuse_intent(self, message):
-        # make a comment when accused of farting
-        self.speak_dialog('apologise')
-
-    @intent_handler("Random.intent")
-    def handle_random_intent(self, message: Message) -> None:  # noqa
-        """Initiate random farting."""
-        self.log.info("Farting skill: Triggering random farting")
-        self.random_farting = True
-        self.handle_fart_event(message)
-
-#    @intent_file_handler('random.intent')
-#    def handle_random_intent(self, message):
-#        # initiate random farting
-#        self.log.info("Triggering random farting")
-#        self.speak_dialog('random_farting')
-#        self.random_farting = True
-#        self.schedule_event(self.handle_fart_event, datetime.now()
-#                            + timedelta(seconds=random.randrange(30, 60)),
-#                            name='random_fart'+str(self.counter))
-    @intent_handler(IntentBuilder("StopFarting").require("Stop").require("Fart"))
-    def halt_farting(self, message: Message) -> None:
-        """Stop the random farting."""
-        self.log.info("Farting skill: Stopping")
-        # if in random fart mode, cancel the scheduled event
-        if self.random_fart: 
-            self.log.info("Farting skill: Stopping random fart event")
-            self.random_fart = False
-            self.cancel_scheduled_event("random_fart")
-            self.speak_dialog("cancel")
-        else:
-            self.speak_dialog("cancel_fail")
-
-    def handle_fart_event(self, message: Optional[Message]) -> None:
-        """Create a scheduled event for random farting."""
-        if not self.random_fart:
+    def _handle_random_fart(self, message: Optional[Message] = None):
+        if not self.random_mode:
             return
-        self.log.info("Farting skill: Handling fart event")
         self.fart()
-        self.cancel_scheduled_event("random_fart")
-        self.schedule_event(
-            self.handle_fart_event,
-            datetime.now() + timedelta(seconds=random.randrange(200, 10800)),
-            name="random_fart",
-        )
+        self._schedule_next_random_fart()
 
+    def _stop_random_mode(self) -> bool:
+        """Leave random mode. Returns True if it was active."""
+        was_active = self.random_mode
+        self.random_mode = False
+        self.cancel_scheduled_event(RANDOM_EVENT_NAME)
+        return was_active
 
+    # ------------------------------------------------------------------
+    # intents
+    @intent_handler("fart.intent")
+    def handle_fart(self, message: Message):
+        if not self.fart():
+            self.speak_dialog("no_sounds")
 
-#    @intent_file_handler('farting.intent')
-#    def fart_and_comment(self):
-#        # play a randomly selected fart noise and make a comment
-#        self.log.info("Fart and comment")
-#        sound_file = path.join(self.path_to_sound_files,
-#                               random.choice(self.sound_files))
-#        sound_url = 'file://' + path.join(self.path_to_sound_files,
-#                                          random.choice(self.sound_files))
-#        tag = TinyTag.get(sound_file)
-#        self.audio_service.play(tracks=sound_url)
-#        self.log.info("Fart duration " + str(int(tag.duration)))
-#        time.sleep(int(tag.duration))
-#        self.speak_dialog('noise')
+    @intent_handler("accuse.intent")
+    def handle_accuse(self, message: Message):
+        self.speak_dialog("confess" if self.recently_farted() else "deny")
 
-#    @intent_file_handler('halt_farting.intent')
-#    def halt_farting(self, message):
-#        self.log.info("Stopping")
-#        # if in random fart mode, cancel the scheduled event
-#        if self.random_farting:
-#            self.log.info("Stopping random farting event")
-#            self.speak_dialog('cancel')
-#            self.random_farting = False
-#            self.cancel_scheduled_event('random_fart'+str(self.counter))
+    @intent_handler("random_start.intent")
+    def handle_random_start(self, message: Message):
+        if not self.sounds:
+            self.speak_dialog("no_sounds")
+            return
+        if self.random_mode:
+            self.speak_dialog("random_already_running")
+            return
+        self.random_mode = True
+        self.speak_dialog("random_started")
+        self._schedule_next_random_fart()
 
+    @intent_handler("random_stop.intent")
+    def handle_random_stop(self, message: Message):
+        if self._stop_random_mode():
+            self.speak_dialog("random_stopped")
+        else:
+            self.speak_dialog("random_not_running")
+
+    # ------------------------------------------------------------------
+    # global stop ("stop") ends random mode
+    def can_stop(self, message: Message) -> bool:
+        return self.random_mode
+
+    def stop(self):
+        self._stop_random_mode()
+
+    def shutdown(self):
+        self._stop_random_mode()

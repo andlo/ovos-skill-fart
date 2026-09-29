@@ -1,0 +1,23 @@
+{
+  "skill_id": "ovos-skill-fart.andlo",
+  "source": "https://github.com/andlo/ovos-skill-fart",
+  "package_name": "ovos-skill-fart",
+  "pip_spec": "ovos-skill-fart",
+  "license": "GPL-3.0-or-later",
+  "author": "andlo",
+  "name": "Prut",
+  "description": "Får din stemmeassistent til at prutte - på kommando eller helt tilfældigt - og benægte alt bagefter. Kører helt offline.",
+  "examples": [
+    "prut",
+    "var det dig der pruttede",
+    "prut tilfældigt",
+    "stop med at prutte"
+  ],
+  "tags": [
+    "sjov",
+    "humor",
+    "underholdning",
+    "prut"
+  ],
+  "icon": "https://raw.githubusercontent.com/andlo/ovos-skill-fart/main/icon.png"
+}

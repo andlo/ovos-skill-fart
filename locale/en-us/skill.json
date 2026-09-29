@@ -1,0 +1,24 @@
+{
+  "skill_id": "ovos-skill-fart.andlo",
+  "source": "https://github.com/andlo/ovos-skill-fart",
+  "package_name": "ovos-skill-fart",
+  "pip_spec": "ovos-skill-fart",
+  "license": "GPL-3.0-or-later",
+  "author": "andlo",
+  "name": "Fart",
+  "description": "Makes your voice assistant fart - on request or at random - and deny everything afterwards. Fully offline.",
+  "examples": [
+    "fart",
+    "did you fart",
+    "fart randomly",
+    "stop farting"
+  ],
+  "tags": [
+    "fun",
+    "humor",
+    "entertainment",
+    "prank",
+    "fart"
+  ],
+  "icon": "https://raw.githubusercontent.com/andlo/ovos-skill-fart/main/icon.png"
+}

@@ -1,0 +1,23 @@
+{
+  "skill_id": "ovos-skill-fart.andlo",
+  "source": "https://github.com/andlo/ovos-skill-fart",
+  "package_name": "ovos-skill-fart",
+  "pip_spec": "ovos-skill-fart",
+  "license": "GPL-3.0-or-later",
+  "author": "andlo",
+  "name": "Scoreggia",
+  "description": "Fa scoreggiare il tuo assistente vocale, su richiesta o a caso, e poi nega tutto. Funziona completamente offline.",
+  "examples": [
+    "scoreggia",
+    "hai scoreggiato",
+    "scoreggia a caso",
+    "smetti di scoreggiare"
+  ],
+  "tags": [
+    "divertente",
+    "umorismo",
+    "intrattenimento",
+    "scoreggia"
+  ],
+  "icon": "https://raw.githubusercontent.com/andlo/ovos-skill-fart/main/icon.png"
+}

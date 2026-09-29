@@ -4,20 +4,17 @@ from os import walk, path
 
 BASEDIR = path.abspath(path.dirname(__file__))
 URL = "https://github.com/andlo/ovos-skill-fart"
-SKILL_CLAZZ = "Farting"  # needs to match __init__.py class name
+SKILL_CLAZZ = "FartSkill"  # needs to match __init__.py class name
 PYPI_NAME = "ovos-skill-fart"  # pip install PYPI_NAME
 
-# below derived from github url to ensure standard skill_id
 SKILL_AUTHOR, SKILL_NAME = URL.split(".com/")[-1].split("/")
 SKILL_PKG = SKILL_NAME.lower().replace("-", "_")
 PLUGIN_ENTRY_POINT = f"{SKILL_NAME.lower()}.{SKILL_AUTHOR.lower()}={SKILL_PKG}:{SKILL_CLAZZ}"
-# skill_id=package_name:SkillClass
-BASE_PATH = BASE_PATH = path.abspath(path.join(path.dirname(__file__), "."))
+BASE_PATH = path.abspath(path.join(path.dirname(__file__), "."))
 
 
 def get_version():
     """Find the version of the package"""
-    version = None
     version_file = path.join(BASE_PATH, "version.py")
     major, minor, build, alpha = (None, None, None, None)
     with open(version_file) as f:
@@ -30,7 +27,6 @@ def get_version():
                 build = line.split("=")[1].strip()
             elif "VERSION_ALPHA" in line:
                 alpha = line.split("=")[1].strip()
-
             if (major and minor and build and alpha) or "# END_VERSION_BLOCK" in line:
                 break
     version = f"{major}.{minor}.{build}"
@@ -48,7 +44,7 @@ def get_requirements(requirements_filename: str):
 
 
 def find_resource_files():
-    resource_base_dirs = ("locale", "intents", "dialog", "vocab", "regex", "ui", "sounds")
+    resource_base_dirs = ("locale", "sounds", "regex", "ui")
     package_data = ["*.json"]
     for res in resource_base_dirs:
         if path.isdir(path.join(BASE_PATH, res)):
@@ -61,21 +57,35 @@ def find_resource_files():
 with open("README.md", "r") as f:
     long_description = f.read()
 
+
 setup(
     name=PYPI_NAME,
     version=get_version(),
-    description="",
+    description="Makes your OVOS voice assistant fart - on request or at random - and deny everything afterwards. Offline, 8 languages.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url=URL,
+    project_urls={
+        "Source": URL,
+        "Bug Tracker": f"{URL}/issues",
+    },
     author="Andreas Lorensen",
     author_email="andlo@outlook.dk",
-    license="Apache-2.0",
+    license="GPL-3.0-or-later",
+    python_requires=">=3.9",
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: End Users/Desktop",
+        "Programming Language :: Python :: 3",
+        "Topic :: Multimedia :: Sound/Audio :: Speech",
+        "Topic :: Games/Entertainment",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    ],
     package_dir={SKILL_PKG: "."},
     package_data={SKILL_PKG: find_resource_files()},
     packages=[SKILL_PKG],
     include_package_data=True,
     install_requires=get_requirements("requirements.txt"),
-    keywords="ovos skill voice assistant",
+    keywords="ovos skill voice assistant fun humor prank fart",
     entry_points={"ovos.plugin.skill": PLUGIN_ENTRY_POINT},
 )

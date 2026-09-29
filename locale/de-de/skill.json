@@ -1,0 +1,23 @@
+{
+  "skill_id": "ovos-skill-fart.andlo",
+  "source": "https://github.com/andlo/ovos-skill-fart",
+  "package_name": "ovos-skill-fart",
+  "pip_spec": "ovos-skill-fart",
+  "license": "GPL-3.0-or-later",
+  "author": "andlo",
+  "name": "Pups",
+  "description": "Lässt deinen Sprachassistenten pupsen - auf Befehl oder zufällig - und danach alles abstreiten. Komplett offline.",
+  "examples": [
+    "pups",
+    "hast du gepupst",
+    "pups zufällig",
+    "hör auf zu pupsen"
+  ],
+  "tags": [
+    "spaß",
+    "humor",
+    "unterhaltung",
+    "pups"
+  ],
+  "icon": "https://raw.githubusercontent.com/andlo/ovos-skill-fart/main/icon.png"
+}

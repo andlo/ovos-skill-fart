@@ -1,0 +1,23 @@
+{
+  "skill_id": "ovos-skill-fart.andlo",
+  "source": "https://github.com/andlo/ovos-skill-fart",
+  "package_name": "ovos-skill-fart",
+  "pip_spec": "ovos-skill-fart",
+  "license": "GPL-3.0-or-later",
+  "author": "andlo",
+  "name": "Scheet",
+  "description": "Laat je spraakassistent scheten laten - op commando of willekeurig - en daarna alles ontkennen. Werkt volledig offline.",
+  "examples": [
+    "laat een scheet",
+    "heb jij een scheet gelaten",
+    "laat willekeurig scheten",
+    "stop met scheten laten"
+  ],
+  "tags": [
+    "grappig",
+    "humor",
+    "vermaak",
+    "scheet"
+  ],
+  "icon": "https://raw.githubusercontent.com/andlo/ovos-skill-fart/main/icon.png"
+}

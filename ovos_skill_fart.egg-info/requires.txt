@@ -1,4 +1,0 @@
-ovos-audio
-ovos-plugin-manager
-ovos-utils
-ovos-workshop
