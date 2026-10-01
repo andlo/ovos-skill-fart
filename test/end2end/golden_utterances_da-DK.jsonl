@@ -1,0 +1,11 @@
+{"utterance": "var det dig der pruttede", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "var det dig", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "hvem pruttede", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "prut", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "lav en prut", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "slip en prut", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "prut tilfældigt", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "prut en gang imellem", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "slip en prut i ny og næ", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "hold op med at prutte", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "ikke flere prutter", "lang": "da-DK", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

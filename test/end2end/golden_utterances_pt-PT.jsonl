@@ -1,0 +1,10 @@
+{"utterance": "deste um pum", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "foste tu", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "quem deu um pum", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "dá um pum", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "faz um pum", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "solta um pum", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "dá puns ao acaso", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "dá um pum de vez em quando", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "solta um de vez em quando", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "chega de puns", "lang": "pt-PT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

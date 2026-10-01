@@ -1,0 +1,11 @@
+{"utterance": "did you fart", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "was that you", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "who farted", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "fart", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "make a fart", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "let one rip", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "fart randomly", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "fart at random", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "let one slip now and then", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "halt farting", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "end farting", "lang": "en-US", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
