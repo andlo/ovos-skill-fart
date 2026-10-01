@@ -1,0 +1,12 @@
+{"utterance": "hai scoreggiato", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "sei stato tu", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "chi ha scoreggiato", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "scoreggia", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "fai una scoreggia", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "fai una puzzetta", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "scoreggia a caso", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "scoreggia ogni tanto", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "fai una puzzetta ogni tanto", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "smetti di scoreggiare", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "basta scoreggiare", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "niente più scoregge", "lang": "it-IT", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

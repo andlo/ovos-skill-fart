@@ -1,0 +1,10 @@
+{"utterance": "c'est toi qui as pété", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "c'était toi", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "qui a pété", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "pète", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "fais un pet", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "lâche un pet", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "pète au hasard", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "pète de temps en temps", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "lâche un pet de temps en temps", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "plus de pets", "lang": "fr-FR", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

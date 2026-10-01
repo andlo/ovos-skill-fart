@@ -1,0 +1,12 @@
+{"utterance": "hast du gepupst", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "warst du das", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "wer hat gepupst", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "pups", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "furz", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "mach einen pups", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "pups zufällig", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "pups ab und zu", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "lass ab und zu einen fliegen", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "hör auf zu pupsen", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "hör auf zu furzen", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "keine pupse mehr", "lang": "de-DE", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

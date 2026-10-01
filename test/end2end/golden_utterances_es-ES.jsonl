@@ -1,0 +1,11 @@
+{"utterance": "te has tirado un pedo", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "has sido tú", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "quién se ha tirado un pedo", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "tírate un pedo", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "haz un pedo", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "echa un pedo", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "tírate pedos al azar", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "tírate un pedo de vez en cuando", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "pedos aleatorios", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "deja de tirarte pedos", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
+{"utterance": "no más pedos", "lang": "es-ES", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}

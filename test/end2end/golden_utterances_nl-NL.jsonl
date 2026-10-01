@@ -1,0 +1,10 @@
+{"utterance": "heb jij een scheet gelaten", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "was jij dat", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "wie heeft er een scheet gelaten", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "accuse"}
+{"utterance": "laat een scheet", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "scheet", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "maak een scheet", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "fart"}
+{"utterance": "laat willekeurig scheten", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "laat af en toe een scheet", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "laat er af en toe eentje vliegen", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_start"}
+{"utterance": "geen scheten meer", "lang": "nl-NL", "skill_id": "ovos-skill-fart.andlo", "intent_label": "random_stop"}
